@@ -11,6 +11,14 @@
     --color-navy-dark: #111b30;
 }
 
+@layer components {
+    .hero-bg {
+        background-image: url('/adrian-regeci-car.jpg');
+        background-size: cover;
+        background-position: center;
+    }
+}
+
 .header-gradient {
     background: linear-gradient(135deg, #787878 0%, #a0a0a0 30%, #a0a0a0 70%, #787878 100%);
 }

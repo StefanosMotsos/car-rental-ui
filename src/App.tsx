@@ -1,9 +1,15 @@
-import Header from "./components/shared/Header.tsx";
+import { Routes, Route } from "react-router-dom"
+import LandingPage from "./pages/LandingPage.tsx";
+import Layout from "./components/shared/Layout.tsx"
 
 function App() {
   return (
     <>
-      <Header />
+      <Routes>
+          <Route element={<Layout />}>
+              <Route path="/" element={<LandingPage />} />
+          </Route>
+      </Routes>
     </>
   )
 }

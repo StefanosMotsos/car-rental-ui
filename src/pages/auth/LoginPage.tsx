@@ -73,7 +73,7 @@ const LoginPage = () => {
                             <span className="text-xs text-red-400">{errors.password.message}</span>
                         )}
                     </div>
-                    <Button className="w-full">Sign in</Button>
+                    <Button className="w-full bg-navy-light">Sign in</Button>
                     <div className="flex items-center justify-center gap-1 border-t border-zinc-700 pt-4 text-sm text-zinc-400">
                         <p>Don't have an account?</p>
                         <a href="/register" className="text-blue-500 font-medium">Create one</a>

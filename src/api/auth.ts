@@ -3,17 +3,11 @@ import axios from "axios";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
-export async function login({
-    username,
-    password,
-}: UserLoginDTO): Promise<JwtTokenDTO> {
-    const form = new URLSearchParams()
-    form.append("username", username)
-    form.append("password", password)
-
+export async function login(
+    fields: UserLoginDTO): Promise<JwtTokenDTO> {
     try {
-        const res = await axios.post(API_URL + "/auth/login", form, {
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        const res = await axios.post(API_URL + "/auth/login", fields, {
+            headers: { "Content-Type": "application/json" },
         })
         return res.data
     } catch (error) {

@@ -2,6 +2,7 @@ import type {UserLoginDTO, UserPayload} from "../schemas/auth.ts";
 import {jwtDecode} from "jwt-decode";
 import {createContext, useContext, useState} from "react";
 import {deleteCookie, getCookie, setCookie} from "../utils/cookies.ts";
+import {login} from "../api/auth.ts";
 
 type AuthUser = {
     userId: string

@@ -4,6 +4,8 @@ export const jwtTokenSchema = z.object({
     token: z.string()
 })
 
+export type JwtTokenDTO = z.infer<typeof jwtTokenSchema>
+
 export const userLoginSchema = z.object({
     username: z.string().min(1, { message: "Username is required" }),
     password: z.string().min(1, { message: "Password is required" }),

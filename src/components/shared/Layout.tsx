@@ -1,5 +1,6 @@
 import Header from "./Header.tsx";
 import {Outlet} from "react-router-dom";
+import Footer from "./Footer.tsx";
 
 const Layout = () => {
     return (
@@ -8,6 +9,7 @@ const Layout = () => {
             <main className="bg-neutral-900">
                 <Outlet />
             </main>
+            <Footer />
         </>
     )
 }

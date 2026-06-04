@@ -2,10 +2,13 @@ import {Button} from "../ui/button.tsx";
 import {Link} from "react-router-dom";
 import {useAuth} from "@/context/AuthProvider.tsx";
 import {ChevronDown} from "lucide-react";
+import {useState} from "react";
+import DropdownItem from "@/components/ui/DropdownItem.tsx";
 
 const Header = () => {
 
-    const { user } = useAuth();
+    const { user, logout } = useAuth();
+    const [isOpen, setOpen] = useState(false);
 
     return (
         <>
@@ -14,10 +17,42 @@ const Header = () => {
                 <span className="text-gray-700 tracking-widest text-lg text-center">ENJOY THE LIFE</span>
                 <div className="flex justify-end">
                     {user ? (
-                        <Button variant="ghost" className="text-primary text-lg hover:text-xl hover:bg-transparent hover:text-primary h-10 px-6">
-                            <span className="min-w-[80px] text-center">{user.username}</span>
-                            <ChevronDown className="ml-2 h-4 w-4" />
-                        </Button>
+                        <div className="relative">
+                            <Button
+                                onClick={() => setOpen(!isOpen)}
+                                variant="ghost"
+                                className="text-primary text-lg hover:text-xl hover:bg-transparent hover:text-primary h-10 px-6">
+                                <span className="min-w-[80px] text-center">{user.username}</span>
+                                <ChevronDown className="ml-2 h-4 w-4" />
+                            </Button>
+                            {isOpen && (
+                                <ul className="dropdown-color text-primary py-2 flex flex-col items-center justify-center gap-2
+                                    absolute mt-2 rounded-lg border border-zinc-600 w-full">
+                                    {user.role === "CUSTOMER" && (
+                                        <>
+                                            <DropdownItem label="View Vehicles" href="/customer/vehicles" />
+                                            <DropdownItem label="Rental History" href="/customer/rentals" />
+                                            <DropdownItem label="Update Profile" href="/customer/update" />
+                                        </>
+                                    )}
+                                    {user.role === "EMPLOYEE" && (
+                                        <>
+                                            <DropdownItem label="View Vehicles" href="/employee/vehicles" />
+                                            <DropdownItem label="View Rentals" href="/employee/rentals" />
+                                        </>
+                                    )}
+                                    {user.role === "ADMIN" && (
+                                        <>
+                                            <DropdownItem label="View Vehicles" href="/employee/vehicles" />
+                                            <DropdownItem label="View Rentals" href="/employee/rentals" />
+                                            <DropdownItem label="Register Employee" href="/register/employee" />
+                                            <DropdownItem label="User Management" href="/admin/users" />
+                                        </>
+                                    )}
+                                    <li onClick={logout} className="text-center py-2 cursor-pointer">Logout</li>
+                                </ul>
+                            )}
+                        </div>
                     ) : (
                         <Button variant="ghost" className="border border-primary text-primary hover:bg-primary hover:text-white h-10 px-6">
                             <Link to="/login">Login</Link>

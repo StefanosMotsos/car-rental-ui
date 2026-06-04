@@ -5,13 +5,12 @@ import {ChevronDown} from "lucide-react";
 
 const Header = () => {
 
-    const { user } = useAuth()
-    console.log(user)
+    const { user } = useAuth();
 
     return (
         <>
             <header className="fixed top-0 left-0 z-50 grid grid-cols-3 items-center px-28 header-gradient w-full h-25">
-                <img src="/mcr-logo.png" alt="Motsos Car Rentals" className="h-[90px] w-auto ml-12" />
+                <Link to="/"><img src="/mcr-logo.png" alt="Motsos Car Rentals" className="h-[90px] w-auto ml-12" /></Link>
                 <span className="text-gray-700 tracking-widest text-lg text-center">ENJOY THE LIFE</span>
                 <div className="flex justify-end">
                     {user ? (

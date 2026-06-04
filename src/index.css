@@ -25,6 +25,10 @@
     background: linear-gradient(135deg, #585858 0%, #888888 25%, #d8d8d8 50%, #888888 75%, #585858 100%);
 }
 
+.dropdown-color {
+    background-color: #888888;
+}
+
 @layer base {
     button:not(:disabled),
     [role="button"]:not(:disabled) {

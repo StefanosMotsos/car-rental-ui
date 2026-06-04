@@ -6,7 +6,7 @@ import {registerCustomer} from "@/api/auth.ts";
 import {useForm} from "react-hook-form";
 import {zodResolver} from "@hookform/resolvers/zod";
 import PasswordInput from "@/components/ui/PasswordInput.tsx";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const RegisterCustomerPage = () => {
 
@@ -106,7 +106,7 @@ const RegisterCustomerPage = () => {
                 </Button>
                 <div className="flex items-center justify-center gap-1 border-t border-zinc-700 pt-4 text-sm text-zinc-400">
                     <p>Already have an account?</p>
-                    <a href="/login" className="text-blue-500 font-medium">Sign in</a>
+                    <Link to="/login" className="text-blue-500 font-medium">Sign in</Link>
                 </div>
             </div>
         </form>

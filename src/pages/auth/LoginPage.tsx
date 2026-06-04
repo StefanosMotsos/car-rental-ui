@@ -1,7 +1,7 @@
 import {useForm} from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod"
 import {type UserLoginDTO, userLoginSchema} from "../../schemas/auth.ts";
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {Button} from "../../components/ui/button.tsx";
 import {useAuth} from "@/context/AuthProvider.tsx";
 import {useEffect, useState} from "react";
@@ -21,8 +21,8 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (!user) return;
-        if (user.role === "CUSTOMER") navigate("/");
-        else navigate("/");
+        if (user.role === "CUSTOMER") navigate("/customer/vehicles");
+        else navigate("/employee/rentals");
     }, [user]);
 
     const onSubmit = async (data: UserLoginDTO) => {
@@ -76,7 +76,7 @@ const LoginPage = () => {
                     <Button className="w-full bg-navy-light">Sign in</Button>
                     <div className="flex items-center justify-center gap-1 border-t border-zinc-700 pt-4 text-sm text-zinc-400">
                         <p>Don't have an account?</p>
-                        <a href="/register" className="text-blue-500 font-medium">Create one</a>
+                        <Link to="/register" className="text-blue-500 font-medium">Create one</Link>
                     </div>
                 </div>
             </form>

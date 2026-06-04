@@ -1,15 +1,24 @@
 import {useAuth} from "../../context/AuthProvider.tsx";
-import {Navigate, Outlet, useLocation} from "react-router-dom";
+import {Navigate, useLocation} from "react-router-dom";
 
-const ProtectedRoute = () => {
-    const { isAuthenticated } = useAuth();
+interface ProtectedRouteProps {
+    role: "CUSTOMER" | "EMPLOYEE" | "ADMIN"
+    children: React.ReactNode
+}
+
+const ProtectedRoute = ({ role, children }: ProtectedRouteProps) => {
+    const { isAuthenticated, user } = useAuth();
     const location = useLocation();
 
     if (!isAuthenticated) {
-        return <Navigate to="/login" state={{from: location}} replace />;
+        return <Navigate to="/login" state={{ from: location }} replace />;
     }
 
-    return <Outlet/>
+    if (user?.role !== role) {
+        return <Navigate to="/" replace />;
+    }
+
+    return <>{children}</>
 }
 
 export default ProtectedRoute

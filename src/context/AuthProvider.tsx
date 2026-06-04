@@ -8,7 +8,7 @@ type AuthUser = {
     userId: string
     username: string
     email: string
-    role: string
+    role: "CUSTOMER" | "EMPLOYEE" | "ADMIN"
     userUuid: string
     token: string
 }

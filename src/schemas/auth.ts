@@ -17,7 +17,7 @@ export const jwtPayloadSchema = z.object({
     nameid: z.string(),
     unique_name: z.string().min(1),
     email: z.string().min(1),
-    role: z.string().min(1),
+    role: z.enum(["CUSTOMER", "EMPLOYEE", "ADMIN"]),
     uuid: z.string().min(1),
     exp: z.number().int()
 })

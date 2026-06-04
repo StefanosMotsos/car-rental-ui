@@ -5,6 +5,7 @@ import Layout from "./components/shared/Layout.tsx"
 import RegisterCustomerPage from "@/pages/auth/RegisterCustomerPage.tsx";
 import RegisterEmployeePage from "@/pages/auth/RegisterEmployeePage.tsx";
 import ProtectedRoute from "@/components/ui/ProtectedRoute.tsx";
+import AddVehiclePage from "@/pages/vehicles/AddVehiclePage.tsx";
 
 function App() {
   return (
@@ -14,9 +15,8 @@ function App() {
               <Route path="/" element={<LandingPage />} />
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterCustomerPage/>} />
-              <Route path="/register/employee" element={
-                  <ProtectedRoute role="ADMIN"><RegisterEmployeePage/></ProtectedRoute>
-              } />
+              <Route path="/register/employee" element={<ProtectedRoute roles={["ADMIN"]}><RegisterEmployeePage/></ProtectedRoute>} />
+              <Route path="/add/vehicle" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddVehiclePage/></ProtectedRoute>} />
           </Route>
       </Routes>
     </>

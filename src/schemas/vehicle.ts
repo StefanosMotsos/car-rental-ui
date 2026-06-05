@@ -46,3 +46,29 @@ export const vehicleSchema = z.object({
 })
 
 export type VehicleReadOnlyDTO = z.infer<typeof vehicleSchema>
+
+export const paginatedVehicleSchema = z.object({
+    data: z.array(vehicleSchema),
+    totalRecords: z.number(),
+    pageNumber: z.number(),
+    pageSize: z.number(),
+    totalPages: z.number(),
+})
+
+export type PaginatedVehicle = z.infer<typeof paginatedVehicleSchema>
+
+export const vehicleFiltersSchema = z.object({
+    search: z.string().optional(),
+    licensePlate: z.string().optional(),
+    make: z.string().optional(),
+    model: z.string().optional(),
+    minYear: z.number().optional(),
+    maxYear: z.number().optional(),
+    minDailyRate: z.number().optional(),
+    maxDailyRate: z.number().optional(),
+    status: z.enum(["Available", "Rented", "Maintenance"]).optional(),
+    tierType: z.enum(["Economy", "Standard", "Luxury", "VIP"]).optional(),
+    categoryId: z.number().optional(),
+})
+
+export type VehicleFilters = z.infer<typeof vehicleFiltersSchema>

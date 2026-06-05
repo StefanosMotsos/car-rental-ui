@@ -21,6 +21,27 @@
     }
 }
 
+input[type="number"] {
+    -moz-appearance: textfield;
+    appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
+.custom-scroll::-webkit-scrollbar {
+    width: 4px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #52525b;
+    border-radius: 99px;
+}
+
 .header-gradient {
     background: linear-gradient(135deg, #585858 0%, #888888 25%, #d8d8d8 50%, #888888 75%, #585858 100%);
 }

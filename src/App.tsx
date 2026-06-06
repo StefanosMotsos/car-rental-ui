@@ -9,6 +9,7 @@ import AddVehiclePage from "@/pages/vehicles/AddVehiclePage.tsx";
 import AddPhotoPage from "@/pages/vehicles/AddPhotoPage.tsx";
 import VehicleListPage from "@/pages/customer/VehicleListPage.tsx";
 import UpdateProfilePage from "@/pages/customer/UpdateProfilePage.tsx";
+import UpdateEmployeePage from "@/pages/employee/UpdateEmployeePage.tsx";
 
 function App() {
   return (
@@ -25,7 +26,8 @@ function App() {
               {/*employee(2)*/}
               <Route path="/employee/add/vehicle" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddVehiclePage/></ProtectedRoute>} />
               <Route path="/employee/add/vehicle/:uuid/photo" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddPhotoPage/></ProtectedRoute>} />
-              {/*admin(3)*/}
+              <Route path="/admin/employees/:uuid/edit" element={<ProtectedRoute roles={["ADMIN"]}><UpdateEmployeePage/></ProtectedRoute>} />
+              {/*admin(2)*/}
           </Route>
       </Routes>
     </>

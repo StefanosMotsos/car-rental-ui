@@ -46,7 +46,6 @@ const Header = () => {
                                             <DropdownItem label="View Vehicles" href="/employee/vehicles" />
                                             <DropdownItem label="View Rentals" href="/employee/rentals" />
                                             <DropdownItem label="Register Employee" href="/register/employee" />
-                                            <DropdownItem label="Update Employee" href={"/admin/employee/edit"} />
                                             <DropdownItem label="User Management" href="/admin/users" />
                                         </>
                                     )}

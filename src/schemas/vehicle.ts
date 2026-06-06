@@ -69,6 +69,8 @@ export const vehicleFiltersSchema = z.object({
     status: z.enum(["Available", "Rented", "Maintenance"]).optional(),
     tierType: z.enum(["Economy", "Standard", "Luxury", "VIP"]).optional(),
     categoryId: z.number().optional(),
+    pageNumber: z.number().optional(),
+    pageSize: z.number().optional(),
 })
 
 export type VehicleFilters = z.infer<typeof vehicleFiltersSchema>

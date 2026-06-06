@@ -32,7 +32,7 @@ const Header = () => {
                                         <>
                                             <DropdownItem label="View Vehicles" href="/customer/vehicles" />
                                             <DropdownItem label="Rental History" href="/customer/rentals" />
-                                            <DropdownItem label="Update Profile" href="/customer/update" />
+                                            <DropdownItem label="Update Profile" href="/customer/edit" />
                                         </>
                                     )}
                                     {user.role === "EMPLOYEE" && (
@@ -46,6 +46,7 @@ const Header = () => {
                                             <DropdownItem label="View Vehicles" href="/employee/vehicles" />
                                             <DropdownItem label="View Rentals" href="/employee/rentals" />
                                             <DropdownItem label="Register Employee" href="/register/employee" />
+                                            <DropdownItem label="Update Employee" href={"/admin/employee/edit"} />
                                             <DropdownItem label="User Management" href="/admin/users" />
                                         </>
                                     )}

@@ -61,3 +61,9 @@ export const employeeSignupSchema = baseSignupSchema.extend({
 
 export type CustomerSignupDTO = z.infer<typeof customerSignupSchema>
 export type EmployeeSignupDTO = z.infer<typeof employeeSignupSchema>
+
+export const customerUpdateSchema = customerSignupSchema
+export const employeeUpdateSchema = employeeSignupSchema
+
+export type CustomerUpdateDTO = CustomerSignupDTO
+export type EmployeeUpdateDTO = EmployeeSignupDTO

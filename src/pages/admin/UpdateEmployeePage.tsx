@@ -62,7 +62,7 @@ const UpdateEmployeePage = () => {
                     <div className="flex flex-col border border-zinc-700 rounded-xl bg-zinc-800 px-8 py-14 gap-6 w-full max-w-xl text-center">
                         <h1 className="text-zinc-300 text-2xl font-bold">Employee was updated successfully</h1>
                         <div className="flex gap-4 justify-center">
-                            <Link to="/admin/employees" className="text-blue-400 hover:text-blue-300 text-sm">Back to Employees</Link>
+                            <Link to="/admin/users" className="text-blue-400 hover:text-blue-300 text-sm">Back to Users</Link>
                         </div>
                     </div>
                 </div>

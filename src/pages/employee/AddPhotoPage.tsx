@@ -27,7 +27,7 @@ const AddPhotoPage = () => {
         setApiError(null);
         try {
             await addPhoto(uuid!, file!, user!.token)
-            navigate("/")
+            navigate("/employee/vehicles")
         } catch (error) {
             setApiError(error instanceof Error ? error.message : "Something went wrong");
         } finally {

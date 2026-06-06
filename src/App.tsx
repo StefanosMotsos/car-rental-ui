@@ -5,11 +5,12 @@ import Layout from "./components/shared/Layout.tsx"
 import RegisterCustomerPage from "@/pages/auth/RegisterCustomerPage.tsx";
 import RegisterEmployeePage from "@/pages/auth/RegisterEmployeePage.tsx";
 import ProtectedRoute from "@/components/ui/ProtectedRoute.tsx";
-import AddVehiclePage from "@/pages/vehicles/AddVehiclePage.tsx";
-import AddPhotoPage from "@/pages/vehicles/AddPhotoPage.tsx";
+import AddVehiclePage from "@/pages/employee/AddVehiclePage.tsx";
+import AddPhotoPage from "@/pages/employee/AddPhotoPage.tsx";
 import VehicleListPage from "@/pages/customer/VehicleListPage.tsx";
 import UpdateProfilePage from "@/pages/customer/UpdateProfilePage.tsx";
-import UpdateEmployeePage from "@/pages/employee/UpdateEmployeePage.tsx";
+import UpdateEmployeePage from "@/pages/admin/UpdateEmployeePage.tsx";
+import UpdateVehiclePage from "@/pages/admin/UpdateVehiclePage.tsx";
 
 function App() {
   return (
@@ -26,8 +27,9 @@ function App() {
               {/*employee(2)*/}
               <Route path="/employee/add/vehicle" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddVehiclePage/></ProtectedRoute>} />
               <Route path="/employee/add/vehicle/:uuid/photo" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddPhotoPage/></ProtectedRoute>} />
+              <Route path="/admin/vehicles/:uuid/edit" element={<ProtectedRoute roles={["ADMIN"]}><UpdateVehiclePage/></ProtectedRoute>} />
               <Route path="/admin/employees/:uuid/edit" element={<ProtectedRoute roles={["ADMIN"]}><UpdateEmployeePage/></ProtectedRoute>} />
-              {/*admin(2)*/}
+              {/*admin(1 page, employee extra)*/}
           </Route>
       </Routes>
     </>

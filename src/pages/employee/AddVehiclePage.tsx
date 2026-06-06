@@ -139,7 +139,7 @@ const AddVehiclePage = () => {
                         )}
                     </Field>
                     <Button disabled={isLoading} className="mt-3 py-5 bg-navy-light">
-                        {isLoading ? "Adding..." : "Add Vehicle"}
+                        {isLoading ? "Updating..." : "Update Vehicle"}
                     </Button>
                 </div>
             </form>

@@ -3,13 +3,14 @@ import { Button } from "@/components/ui/button.tsx";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import { useState } from "react";
 import type { VehicleReadOnlyDTO } from "@/schemas/vehicle.ts";
+import {Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger} from "@/components/ui/dialog.tsx";
+import RentalForm from "@/components/ui/RentalForm.tsx";
 
 type VehicleCardProps = {
     vehicle: VehicleReadOnlyDTO
-    onRent: (vehicle: VehicleReadOnlyDTO) => void
 }
 
-const VehicleCard = ({ vehicle, onRent }: VehicleCardProps) => {
+const VehicleCard = ({ vehicle }: VehicleCardProps) => {
 
     const [showDetails, setShowDetails] = useState(false)
 
@@ -44,11 +45,19 @@ const VehicleCard = ({ vehicle, onRent }: VehicleCardProps) => {
                             {showDetails ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                             <span className="text-zinc-200">{showDetails ? "Less" : "More"}</span>
                         </Button>
-                        <Button
-                            onClick={() => onRent(vehicle)}
-                            className="flex-1 mt-2 bg-navy-light hover:bg-navy">
-                            <span className="text-zinc-200">Rent</span>
-                        </Button>
+                        <Dialog>
+                            <DialogTrigger asChild>
+                                <Button className="flex-1 mt-2 bg-navy-light hover:bg-navy">
+                                    <span className="text-zinc-200">Rent</span>
+                                </Button>
+                            </DialogTrigger>
+                            <DialogContent className="bg-zinc-900 border border-zinc-700 text-zinc-100">
+                                <DialogHeader>
+                                    <DialogTitle className="text-white">Rent Vehicle</DialogTitle>
+                                </DialogHeader>
+                                <RentalForm vehicle={vehicle} />
+                            </DialogContent>
+                        </Dialog>
                     </div>
                 </div>
             </CardContent>

@@ -7,6 +7,7 @@ import RegisterEmployeePage from "@/pages/auth/RegisterEmployeePage.tsx";
 import ProtectedRoute from "@/components/ui/ProtectedRoute.tsx";
 import AddVehiclePage from "@/pages/vehicles/AddVehiclePage.tsx";
 import AddPhotoPage from "@/pages/vehicles/AddPhotoPage.tsx";
+import VehicleListPage from "@/pages/customer/VehicleListPage.tsx";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterCustomerPage/>} />
               <Route path="/register/employee" element={<ProtectedRoute roles={["ADMIN"]}><RegisterEmployeePage/></ProtectedRoute>} />
-              <Route path="/add/vehicle" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddVehiclePage/></ProtectedRoute>} />
-              <Route path="/add/vehicle/:uuid/photo" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddPhotoPage/></ProtectedRoute>} />
+              <Route path="/customer/vehicles" element={<ProtectedRoute roles={["CUSTOMER"]}><VehicleListPage/></ProtectedRoute>} />
+              <Route path="/employee/add/vehicle" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddVehiclePage/></ProtectedRoute>} />
+              <Route path="/employee/add/vehicle/:uuid/photo" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddPhotoPage/></ProtectedRoute>} />
           </Route>
       </Routes>
     </>

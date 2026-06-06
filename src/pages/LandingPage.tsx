@@ -1,6 +1,7 @@
 import {Button} from "../components/ui/button.tsx";
 import BrandIcon from "../components/ui/BrandIcon.tsx";
 import StatCard from "../components/ui/StatCard.tsx";
+import {Link} from "react-router-dom";
 
 const brands = [
     { src: "/fiatlogo.png", alt: "Fiat" },
@@ -18,7 +19,9 @@ const LandingPage = () => {
         <>
             <section className="pt-25 hero-bg w-full h-screen flex flex-col items-center justify-center">
                 <Button size="lg" className="mb-16 px-6 py-8 text-lg font-bold">
-                    Rent A Car Now!
+                    <Link to={"/customer/vehicles"}>
+                        Rent A Car Now!
+                    </Link>
                 </Button>
             </section>
             <section>
@@ -38,7 +41,7 @@ const LandingPage = () => {
             <section className="flex flex-col items-center justify-center gap-8 py-8 w-full">
                 <p className='text-zinc-300 text-5xl font-bold'>Already a customer?</p>
                 <Button size="lg" className="mb-16 px-6 py-8 text-lg font-bold">
-                    View My Rentals
+                    <Link to={"/customer/rentals"}>View My Rentals</Link>
                 </Button>
             </section>
             <section className="flex flex-col items-center justify-center gap-8 py-8 w-full">

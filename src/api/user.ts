@@ -81,3 +81,33 @@ export async function updateEmployee(
     }
 }
 
+export async function deleteCustomer(uuid: string, token: string): Promise<void> {
+    try {
+        await axios.delete(`${API_URL}/customers/${uuid}`, {
+            headers: { "Authorization": `Bearer ${token}` }
+        })
+    } catch (error) {
+        let detail = "Failed to delete customer"
+        if (axios.isAxiosError(error)) {
+            const data = error.response?.data
+            if (typeof data?.detail === "string") detail = data.detail
+        }
+        throw new Error(detail, { cause: error })
+    }
+}
+
+export async function deleteEmployee(uuid: string, token: string): Promise<void> {
+    try {
+        await axios.delete(`${API_URL}/employees/${uuid}`, {
+            headers: { "Authorization": `Bearer ${token}` }
+        })
+    } catch (error) {
+        let detail = "Failed to delete employee"
+        if (axios.isAxiosError(error)) {
+            const data = error.response?.data
+            if (typeof data?.detail === "string") detail = data.detail
+        }
+        throw new Error(detail, { cause: error })
+    }
+}
+

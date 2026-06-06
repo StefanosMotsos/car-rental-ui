@@ -31,6 +31,11 @@ export const createVehicleSchema = z.object({
 export type VehicleCreateDTO = z.infer<typeof createVehicleSchema>
 export const TIER_TYPES = ["Economy", "Standard", "Luxury", "VIP"] as const
 
+export const updateVehicleSchema = createVehicleSchema.extend({
+    status: z.enum(["Available", "Rented", "Maintenance"], { error: "Select a status" })
+})
+export type VehicleUpdateDTO = z.infer<typeof updateVehicleSchema>
+
 export const vehicleSchema = z.object({
     uuid: z.string().uuid(),
     make: z.string(),

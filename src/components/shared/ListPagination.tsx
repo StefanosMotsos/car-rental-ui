@@ -15,7 +15,7 @@ type ListPaginationProps = {
 
 const ListPagination = ({ page, totalPages, onPageChange }: ListPaginationProps) => {
     return (
-        <Pagination className="mt-6 ml-10 text-zinc-400">
+        <Pagination className="mt-6 text-zinc-400">
             <PaginationContent>
                 <PaginationItem>
                     <PaginationPrevious

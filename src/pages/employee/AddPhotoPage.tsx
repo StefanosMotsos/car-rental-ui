@@ -1,7 +1,7 @@
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import {CheckCircle, Upload, X} from "lucide-react";
 import {Button} from "@/components/ui/button.tsx";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState} from "react";
 import {addPhoto} from "@/api/vehicle.ts";
 import {useAuth} from "@/context/AuthProvider.tsx";
 
@@ -21,6 +21,10 @@ const AddPhotoPage = () => {
     const handleFileSelect = () => {
         inputRef.current?.click();
     }
+
+    useEffect(() => {
+        window.scrollTo(0, 0)
+    }, [])
 
     const handleSubmit = async () => {
         setIsLoading(true)

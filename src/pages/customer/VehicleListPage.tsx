@@ -12,12 +12,6 @@ const VehicleListPage = () => {
 
     const makers = vehicles.length > 0 ? [...new Set(vehicles.map(v => v.make))] : []
 
-    if (isLoading) return (
-        <div className="flex items-center text-center gap-4">
-            <Spinner className="size-8" />
-        </div>
-    )
-
     return (
         <main className="min-h-screen flex flex-col items-center justify-center pt-40 pb-30 px-12">
             <SearchBar onSearch={(value) => setFilters(f => ({ ...f, search: value }))} />
@@ -30,11 +24,17 @@ const VehicleListPage = () => {
                     <VehicleListControls makers={makers} />
                 </FiltersSidebar>
                 <div className="flex-1 grid grid-cols-4 gap-2">
-                    {vehicles.map(vehicle => (
-                        <VehicleCard
-                            key={vehicle.uuid}
-                            vehicle={vehicle}/>
-                    ))}
+                    {isLoading ? (
+                        <div className="flex items-center text-center gap-4">
+                            <Spinner className="size-8" />
+                        </div>
+                    ) : (
+                        vehicles.map(vehicle => (
+                            <VehicleCard
+                                key={vehicle.uuid}
+                                vehicle={vehicle}/>
+                        ))
+                    )}
                 </div>
             </div>
             <ListPagination

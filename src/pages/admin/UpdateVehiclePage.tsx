@@ -71,6 +71,7 @@ const UpdateVehiclePage = () => {
             }
         }
         fetchVehicle()
+        window.scrollTo(0, 0)
     }, [])
 
     return (

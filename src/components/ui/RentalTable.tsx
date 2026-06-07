@@ -22,17 +22,17 @@ const RentalTable = ({ rentals, refetch } : RentalTableProps) => {
     const { user } = useAuth()
 
     const handleApprove = async (uuid: string) => {
-        await updateRental(user!.token, { status: "Approved", employeeUuid: user!.userUuid }, uuid)
+        await updateRental(user!.token, { status: "Approved" }, uuid)
         refetch()
     }
 
     const handleReject = async (uuid: string) => {
-        await updateRental(user!.token, { status: "Rejected", employeeUuid: user!.userUuid }, uuid)
+        await updateRental(user!.token, { status: "Rejected" }, uuid)
         refetch()
     }
 
     const handleReturned = async (uuid: string) => {
-        await updateRental(user!.token, { status: "Returned", employeeUuid: user!.userUuid }, uuid)
+        await updateRental(user!.token, { status: "Returned" }, uuid)
         refetch()
     }
 
@@ -42,21 +42,29 @@ const RentalTable = ({ rentals, refetch } : RentalTableProps) => {
                 <Table>
                     <TableHeader>
                         <TableRow className="border-zinc-700 bg-zinc-800 hover:bg-zinc-800">
-                            <TableHead className="label-field">CUSTOMER</TableHead>
+                            {user!.role !== "CUSTOMER" && (
+                                <TableHead className="label-field">CUSTOMER</TableHead>
+                            )}
                             <TableHead className="label-field">VEHICLE</TableHead>
                             <TableHead className="label-field">L.PLATE</TableHead>
                             <TableHead className="label-field">START DATE</TableHead>
                             <TableHead className="label-field">END DATE</TableHead>
                             <TableHead className="label-field">TOTAL COST</TableHead>
                             <TableHead className="label-field">STATUS</TableHead>
-                            <TableHead className="label-field">EMPLOYEE</TableHead>
-                            <TableHead className="label-field">ACTIONS</TableHead>
+                            {user!.role !== "CUSTOMER" && (
+                                <>
+                                    <TableHead className="label-field">EMPLOYEE</TableHead>
+                                    <TableHead className="label-field">ACTIONS</TableHead>
+                                </>
+                            )}
                         </TableRow>
                     </TableHeader>
                     <TableBody>
                         {rentals.map((r) => (
                             <TableRow key={r.uuid} className="border-zinc-700 hover:bg-zinc-700 text-zinc-300">
-                                <TableCell>{r.customerFirstname} {r.customerLastname}</TableCell>
+                                {user!.role !== "CUSTOMER" && (
+                                    <TableCell>{r.customerFirstname} {r.customerLastname}</TableCell>
+                                )}
                                 <TableCell>{r.vehicleMake} {r.vehicleModel}</TableCell>
                                 <TableCell>{r.vehicleLicensePlate}</TableCell>
                                 <TableCell>{r.startDate}</TableCell>
@@ -73,54 +81,58 @@ const RentalTable = ({ rentals, refetch } : RentalTableProps) => {
                                         <StatusBadge status="Returned"/>
                                     )}
                                 </TableCell>
-                                <TableCell>
-                                    {r.employeeFirstname && r.employeeLastname
-                                        ? `${r.employeeFirstname} ${r.employeeLastname}`
-                                        : "—"}
-                                </TableCell>
-                                {r.status === "Pending" ? (
-                                    <TableCell className="pl-6">
-                                        <DropdownMenu>
-                                            <DropdownMenuTrigger asChild>
-                                                <Button variant="ghost" size="icon" className="size-8">
-                                                    <Ellipsis />
-                                                    <span className="sr-only">Open menu</span>
-                                                </Button>
-                                            </DropdownMenuTrigger>
-                                            <DropdownMenuContent align="end" className="bg-zinc-800 border-zinc-700 text-zinc-200">
-                                                <DropdownMenuItem
-                                                    onClick={() => handleApprove(r.uuid)}
-                                                    className="hover:bg-zinc-700 cursor-pointer">
-                                                    Approve
-                                                </DropdownMenuItem>
-                                                <DropdownMenuItem
-                                                    onClick={() => handleReject(r.uuid)}
-                                                    className="hover:bg-zinc-700 cursor-pointer">
-                                                    Reject
-                                                </DropdownMenuItem>
-                                            </DropdownMenuContent>
-                                        </DropdownMenu>
-                                    </TableCell>
-                                ) : r.status === "Approved" ? (
-                                    <TableCell className="pl-6">
-                                        <DropdownMenu>
-                                            <DropdownMenuTrigger asChild>
-                                                <Button variant="ghost" size="icon" className="size-8">
-                                                    <Ellipsis />
-                                                    <span className="sr-only">Open menu</span>
-                                                </Button>
-                                            </DropdownMenuTrigger>
-                                            <DropdownMenuContent align="end" className="bg-zinc-800 border-zinc-700 text-zinc-200">
-                                                <DropdownMenuItem
-                                                    onClick={() => handleReturned(r.uuid)}
-                                                    className="hover:bg-zinc-700 cursor-pointer">
-                                                    Returned
-                                                </DropdownMenuItem>
-                                            </DropdownMenuContent>
-                                        </DropdownMenu>
-                                    </TableCell>
-                                ) : (
-                                    <TableCell />
+                                {user!.role !== "CUSTOMER" && (
+                                    <>
+                                        <TableCell>
+                                            {r.employeeFirstname && r.employeeLastname
+                                                ? `${r.employeeFirstname} ${r.employeeLastname}`
+                                                : "—"}
+                                        </TableCell>
+                                        {r.status === "Pending" ? (
+                                            <TableCell className="pl-6">
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger asChild>
+                                                        <Button variant="ghost" size="icon" className="size-8">
+                                                            <Ellipsis />
+                                                            <span className="sr-only">Open menu</span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align="end" className="bg-zinc-800 border-zinc-700 text-zinc-200">
+                                                        <DropdownMenuItem
+                                                            onClick={() => handleApprove(r.uuid)}
+                                                            className="hover:bg-zinc-700 cursor-pointer">
+                                                            Approve
+                                                        </DropdownMenuItem>
+                                                        <DropdownMenuItem
+                                                            onClick={() => handleReject(r.uuid)}
+                                                            className="hover:bg-zinc-700 cursor-pointer">
+                                                            Reject
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        ) : r.status === "Approved" ? (
+                                            <TableCell className="pl-6">
+                                                <DropdownMenu>
+                                                    <DropdownMenuTrigger asChild>
+                                                        <Button variant="ghost" size="icon" className="size-8">
+                                                            <Ellipsis />
+                                                            <span className="sr-only">Open menu</span>
+                                                        </Button>
+                                                    </DropdownMenuTrigger>
+                                                    <DropdownMenuContent align="end" className="bg-zinc-800 border-zinc-700 text-zinc-200">
+                                                        <DropdownMenuItem
+                                                            onClick={() => handleReturned(r.uuid)}
+                                                            className="hover:bg-zinc-700 cursor-pointer">
+                                                            Returned
+                                                        </DropdownMenuItem>
+                                                    </DropdownMenuContent>
+                                                </DropdownMenu>
+                                            </TableCell>
+                                        ) : (
+                                            <TableCell />
+                                        )}
+                                    </>
                                 )}
                             </TableRow>
                         ))}

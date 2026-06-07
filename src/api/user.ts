@@ -1,10 +1,8 @@
 import axios from "axios";
 import type {
-    CustomerFilters,
-    CustomerReadOnlyDTO, EmployeeFilters,
+    CustomerReadOnlyDTO,
     EmployeeReadOnlyDTO, PaginatedCustomer, PaginatedEmployee,
-    PaginatedUser,
-    UserFilters
+    PaginatedUser, UserManagementFilters
 } from "@/schemas/user.ts";
 import type {CustomerUpdateDTO, EmployeeUpdateDTO} from "@/schemas/auth.ts";
 
@@ -119,7 +117,7 @@ export async function deleteEmployee(uuid: string, token: string): Promise<void>
 
 export async function getUsers(
     token: string,
-    filters?: UserFilters
+    filters?: UserManagementFilters
 ) : Promise<PaginatedUser> {
 
     try {
@@ -141,7 +139,7 @@ export async function getUsers(
 
 export async function getCustomers(
     token: string,
-    filters?: CustomerFilters
+    filters?: UserManagementFilters
 ) : Promise<PaginatedCustomer> {
 
     try {
@@ -163,7 +161,7 @@ export async function getCustomers(
 
 export async function getEmployees(
     token: string,
-    filters?: EmployeeFilters
+    filters?: UserManagementFilters
 ) : Promise<PaginatedEmployee> {
 
     try {

@@ -11,7 +11,7 @@ export const useVehicles = () => {
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(1)
     const [filters, setFilters] = useState<VehicleFilters>({})
-
+    const refetch = () => setFilters(f => ({ ...f }))
 
     useEffect(() => {
         const fetch = async () => {
@@ -38,6 +38,7 @@ export const useVehicles = () => {
         setPage,
         totalPages,
         filters,
-        setFilters
+        setFilters,
+        refetch
     }
 }

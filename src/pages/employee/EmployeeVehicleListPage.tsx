@@ -10,7 +10,7 @@ import {Button} from "@/components/ui/button.tsx";
 import {useNavigate} from "react-router-dom";
 
 const EmployeeVehicleListPage = () => {
-    const { vehicles, isLoading, page, setPage, totalPages, setFilters } = useVehicles()
+    const { vehicles, isLoading, page, setPage, totalPages, setFilters, refetch } = useVehicles()
 
     const makers = vehicles.length > 0 ? [...new Set(vehicles.map(v => v.make))] : []
 
@@ -47,7 +47,9 @@ const EmployeeVehicleListPage = () => {
                                 <Spinner className="size-8" />
                             </div>
                         ) : (
-                            <VehicleTable vehicles={vehicles} />
+                            <VehicleTable
+                                vehicles={vehicles}
+                                refetch={refetch}/>
                         )}
                         <ListPagination
                             page={page}

@@ -25,9 +25,10 @@ import {deleteVehicle} from "@/api/vehicle.ts";
 
 type VehicleTableProps = {
     vehicles: VehicleReadOnlyDTO[]
+    refetch: () => void;
 }
 
-const VehicleTable = ({ vehicles }: VehicleTableProps) => {
+const VehicleTable = ({ vehicles, refetch }: VehicleTableProps) => {
 
     const { user } = useAuth();
     const navigate = useNavigate()
@@ -39,6 +40,7 @@ const VehicleTable = ({ vehicles }: VehicleTableProps) => {
         if (!selectedUuid) return
         await deleteVehicle(selectedUuid, user!.token)
         setDeleteOpen(false)
+        refetch()
     }
 
     return (

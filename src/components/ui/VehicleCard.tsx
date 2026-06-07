@@ -20,7 +20,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
                 {vehicle.photoUrl && (
                     <div className="bg-white rounded-t-xl">
                         <img
-                            src={vehicle.photoUrl ? `https://localhost:7220${vehicle.photoUrl}` : ""}
+                            src={vehicle.photoUrl ? `${import.meta.env.VITE_API_URL.replace('/api/v1', '')}${vehicle.photoUrl}` : ""}
                             alt={`${vehicle.make} ${vehicle.model}`}
                             className="w-full h-32 object-contain rounded-t-xl" />
                     </div>

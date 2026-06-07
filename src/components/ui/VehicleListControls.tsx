@@ -52,7 +52,7 @@ const VehicleListControls = ({makers} : VehicleListControlsProps) => {
                         options={["Available", "Rented", "Maintenance"]}
                         onSelectionChange={(selected) => updateFilter({ status: selected as VehicleFilters["status"] })}/>
                     <div className="flex flex-col gap-2 mt-3">
-                        <span className="text-zinc-400 text-xs tracking-widest">LICENSE PLATE</span>
+                        <span className="label-field">LICENSE PLATE</span>
                         <input
                             key={`plate-${resetKey}`}
                             type="text"

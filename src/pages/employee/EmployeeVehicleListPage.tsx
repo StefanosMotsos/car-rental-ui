@@ -16,12 +16,6 @@ const EmployeeVehicleListPage = () => {
 
     const navigate = useNavigate();
 
-    if (isLoading) return (
-        <div className="flex items-center text-center gap-4">
-            <Spinner className="size-8" />
-        </div>
-    )
-
     return (
         <>
             <main className="min-h-screen flex flex-col items-center justify-center pt-40 pb-30 px-12">

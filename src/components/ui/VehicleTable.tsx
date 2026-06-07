@@ -22,6 +22,7 @@ import {
     AlertDialogTitle,
 } from "@/components/ui/alert-dialog"
 import {deleteVehicle} from "@/api/vehicle.ts";
+import StatusBadge from "@/components/shared/StatusBadge.tsx";
 
 type VehicleTableProps = {
     vehicles: VehicleReadOnlyDTO[]
@@ -74,17 +75,11 @@ const VehicleTable = ({ vehicles, refetch }: VehicleTableProps) => {
                                 <TableCell>{v.categoryName}</TableCell>
                                 <TableCell>
                                     {v.status === "Available" ? (
-                                        <span className="bg-green-950 text-green-400 border border-green-800 text-xs px-2 py-1 rounded-full">
-                                            {v.status}
-                                        </span>
+                                        <StatusBadge status="Available"/>
                                     ) : v.status === "Rented" ? (
-                                        <span className="bg-amber-950 text-amber-400 border border-amber-800 text-xs px-2 py-1 rounded-full">
-                                            {v.status}
-                                        </span>
+                                        <StatusBadge status="Rented"/>
                                     ) : (
-                                        <span className="bg-red-950 text-red-400 border border-red-800 text-xs px-2 py-1 rounded-full">
-                                            {v.status}
-                                        </span>
+                                        <StatusBadge status="Maintenance"/>
                                     )}
                                 </TableCell>
                                 {user?.role === "ADMIN" && (

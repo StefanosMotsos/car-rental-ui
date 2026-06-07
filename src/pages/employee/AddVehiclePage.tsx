@@ -30,7 +30,7 @@ const AddVehiclePage = () => {
         setApiError(null);
         try {
             const vehicle = await addVehicle(data, user!.token);
-            navigate(`/add/vehicle/${vehicle.uuid}/photo`, {
+            navigate(`/employee/add/vehicle/${vehicle.uuid}/photo`, {
                 state: { make: data.make, model: data.model, licensePlate: data.licensePlate }
             })
         } catch (error) {

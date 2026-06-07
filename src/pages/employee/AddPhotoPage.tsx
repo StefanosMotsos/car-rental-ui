@@ -8,7 +8,7 @@ import {useAuth} from "@/context/AuthProvider.tsx";
 const AddPhotoPage = () => {
 
     const location = useLocation();
-    const { make, model, licensePlate } = location.state
+    const { make, model, licensePlate } = location.state ?? {}
     const {user} = useAuth();
     const {uuid} = useParams();
     const navigate = useNavigate();

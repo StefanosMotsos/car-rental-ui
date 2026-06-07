@@ -1,34 +1,31 @@
 import { SlidersHorizontal } from "lucide-react";
-import { useEffect, useState } from "react";
-import type { VehicleFilters } from "@/schemas/vehicle.ts";
-import FiltersRadioList from "@/components/ui/FiltersRadioList.tsx";
-import { getCategories } from "@/api/lookup.ts";
-import { useAuth } from "@/context/AuthProvider.tsx";
-import type { CategoryReadOnlyDTO } from "@/schemas/lookup.ts";
-import FiltersRangeInput from "@/components/ui/FiltersRangeInput.tsx";
+import {createContext, useContext, useState} from "react";
 
-type FiltersSidebarProps = {
-    onFiltersChange: (filters: VehicleFilters) => void
-    setPage: (page: number) => void
-    makers: string[]
+type FiltersContextProps<T> = {
+    updateFilter: (patch: Partial<T>) => void
+    resetKey: number
 }
 
-const FiltersSidebar = ({ onFiltersChange, setPage, makers }: FiltersSidebarProps) => {
+const FilterContext = createContext<FiltersContextProps<any> | null>(null)
 
-    const { user } = useAuth()
+export const useFilters = <T,>() => {
+    const ctx = useContext(FilterContext)
+    if (!ctx) throw new Error("useFilters must be used inside FiltersSidebar")
+    return ctx as FiltersContextProps<T>
+}
+
+type FiltersSidebarProps<T> = {
+    onFiltersChange: (filters: T) => void
+    setPage: (page: number) => void
+    children: React.ReactNode
+}
+
+const FiltersSidebar = <T,> ({ onFiltersChange, setPage, children }: FiltersSidebarProps<T>) => {
 
     const [resetKey, setResetKey] = useState(0)
-    const [categories, setCategories] = useState<CategoryReadOnlyDTO[]>([])
-    const [localFilters, setLocalFilters] = useState<VehicleFilters>({})
+    const [localFilters, setLocalFilters] = useState<T>({} as T)
 
-    useEffect(() => {
-        const fetch = async () => {
-            setCategories(await getCategories(user!.token))
-        }
-        fetch()
-    }, [])
-
-    const updateFilter = (patch: Partial<VehicleFilters>) => {
+    const updateFilter = (patch: Partial<T>) => {
         const updated = { ...localFilters, ...patch }
         setLocalFilters(updated)
         onFiltersChange(updated)
@@ -37,8 +34,8 @@ const FiltersSidebar = ({ onFiltersChange, setPage, makers }: FiltersSidebarProp
 
     const handleClear = () => {
         setResetKey(k => k + 1)
-        setLocalFilters({})
-        onFiltersChange({})
+        setLocalFilters({} as T)
+        onFiltersChange({} as T)
         setPage(1)
     }
 
@@ -55,31 +52,9 @@ const FiltersSidebar = ({ onFiltersChange, setPage, makers }: FiltersSidebarProp
                     className="w-full mt-5 py-2 rounded-lg text-sm tracking-widest text-zinc-400 border border-zinc-600 hover:border-zinc-400 hover:text-zinc-200 transition-colors">
                     CLEAR FILTERS
                 </button>
-                <FiltersRadioList
-                    key={`tier-${resetKey}`}
-                    label="TIER"
-                    options={["Economy", "Standard", "Luxury", "VIP"]}
-                    onSelectionChange={(selected) => updateFilter({ tierType: selected as VehicleFilters["tierType"] })} />
-                <FiltersRadioList
-                    key={`category-${resetKey}`}
-                    label="CATEGORY"
-                    options={categories.map(c => c.name)}
-                    onSelectionChange={(selected) => updateFilter({ categoryId: categories.find(c => c.name === selected)?.id })}
-                    addClasses="custom-scroll" />
-                <FiltersRadioList
-                    key={`make-${resetKey}`}
-                    label="MANUFACTURER"
-                    options={makers}
-                    onSelectionChange={(selected) => updateFilter({ make: selected })}
-                    addClasses="custom-scroll" />
-                <FiltersRangeInput
-                    key={`rate-${resetKey}`}
-                    label="DAILY RATE"
-                    onRangeChange={(min, max) => updateFilter({ minDailyRate: Number(min) || undefined, maxDailyRate: Number(max) || undefined })} />
-                <FiltersRangeInput
-                    key={`year-${resetKey}`}
-                    label="YEAR"
-                    onRangeChange={(min, max) => updateFilter({ minYear: Number(min) || undefined, maxYear: Number(max) || undefined })} />
+                <FilterContext.Provider value={{ updateFilter, resetKey }}>
+                    {children}
+                </FilterContext.Provider>
             </div>
         </>
     )

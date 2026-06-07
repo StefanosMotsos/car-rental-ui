@@ -69,7 +69,7 @@ const RentalTable = ({ rentals, refetch } : RentalTableProps) => {
                                 <TableCell>{r.vehicleLicensePlate}</TableCell>
                                 <TableCell>{r.startDate}</TableCell>
                                 <TableCell>{r.endDate}</TableCell>
-                                <TableCell>{r.totalCost ? `€${r.totalCost.toFixed(2)}` : "—"}</TableCell>
+                                <TableCell>{r.totalCost ? `€${r.totalCost.toFixed(2).toLocaleString()}` : "—"}</TableCell>
                                 <TableCell>
                                     {r.status === "Approved" ? (
                                         <StatusBadge status="Approved"/>

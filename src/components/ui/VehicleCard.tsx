@@ -28,7 +28,7 @@ const VehicleCard = ({ vehicle }: VehicleCardProps) => {
                 <div className="p-3 pb-0">
                     <h2 className="text-white text-lg font-bold mb-2">{vehicle.make} {vehicle.model}</h2>
                     <div className="flex flex-col gap-1">
-                        <span className="text-blue-400">${vehicle.dailyRate}/day</span>
+                        <span className="text-blue-400">€{vehicle.dailyRate}/day</span>
                         <span className="text-zinc-400">{vehicle.year}</span>
                     </div>
                     <div className={`overflow-hidden transition-all duration-300 ease-in-out ${showDetails ? "max-h-40 opacity-100" : "max-h-0 opacity-0"}`}>

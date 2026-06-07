@@ -11,6 +11,7 @@ import VehicleListPage from "@/pages/customer/VehicleListPage.tsx";
 import UpdateProfilePage from "@/pages/customer/UpdateProfilePage.tsx";
 import UpdateEmployeePage from "@/pages/admin/UpdateEmployeePage.tsx";
 import UpdateVehiclePage from "@/pages/admin/UpdateVehiclePage.tsx";
+import EmployeeVehicleListPage from "@/pages/employee/EmployeeVehicleListPage.tsx";
 
 function App() {
   return (
@@ -24,7 +25,8 @@ function App() {
               <Route path="/customer/vehicles" element={<ProtectedRoute roles={["CUSTOMER"]}><VehicleListPage/></ProtectedRoute>} />
               {/*rental history*/}
               <Route path="/customer/edit" element={<ProtectedRoute roles={["CUSTOMER"]}><UpdateProfilePage/></ProtectedRoute>}/>
-              {/*employee(2)*/}
+              {/*employee rental*/}
+              <Route path="/employee/vehicles" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><EmployeeVehicleListPage/></ProtectedRoute>} />
               <Route path="/employee/add/vehicle" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddVehiclePage/></ProtectedRoute>} />
               <Route path="/employee/add/vehicle/:uuid/photo" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddPhotoPage/></ProtectedRoute>} />
               <Route path="/admin/vehicles/:uuid/edit" element={<ProtectedRoute roles={["ADMIN"]}><UpdateVehiclePage/></ProtectedRoute>} />

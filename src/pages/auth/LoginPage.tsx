@@ -50,7 +50,7 @@ const LoginPage = () => {
                         </div>
                     )}
                     <div className="flex flex-col gap-1">
-                        <label className="text-zinc-400 text-xs tracking-widest">
+                        <label className="label-field">
                             USERNAME
                         </label>
                         <input
@@ -62,7 +62,7 @@ const LoginPage = () => {
                         )}
                     </div>
                     <div className="flex flex-col gap-1">
-                        <label className="text-zinc-400 text-xs tracking-widest">
+                        <label className="label-field">
                             PASSWORD
                         </label>
                         <input

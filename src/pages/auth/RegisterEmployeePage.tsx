@@ -54,14 +54,14 @@ const RegisterEmployeePage = () => {
                     )}
                     <div className="flex gap-4 items-center justify-center">
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">FIRST NAME</FieldLabel>
+                            <FieldLabel className="label-field">FIRST NAME</FieldLabel>
                             <input {...register("firstname")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                             {errors.firstname && (
                                 <FieldError className="text-xs text-red-400">{errors.firstname.message}</FieldError>
                             )}
                         </Field>
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">LAST NAME</FieldLabel>
+                            <FieldLabel className="label-field">LAST NAME</FieldLabel>
                             <input {...register("lastname")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                             {errors.lastname && (
                                 <FieldError className="text-xs text-red-400">{errors.lastname.message}</FieldError>
@@ -69,28 +69,28 @@ const RegisterEmployeePage = () => {
                         </Field>
                     </div>
                     <Field className="w-full">
-                        <FieldLabel className="text-zinc-400 text-xs tracking-widest">USERNAME</FieldLabel>
+                        <FieldLabel className="label-field">USERNAME</FieldLabel>
                         <input {...register("username")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                         {errors.username && (
                             <FieldError className="text-xs text-red-400">{errors.username.message}</FieldError>
                         )}
                     </Field>
                     <Field className="w-full">
-                        <FieldLabel className="text-zinc-400 text-xs tracking-widest">PASSWORD</FieldLabel>
+                        <FieldLabel className="label-field">PASSWORD</FieldLabel>
                         <PasswordInput register={register}/>
                         {errors.password && (
                             <FieldError className="text-xs text-red-400">{errors.password.message}</FieldError>
                         )}
                     </Field>
                     <Field className="w-full">
-                        <FieldLabel className="text-zinc-400 text-xs tracking-widest">EMAIL</FieldLabel>
+                        <FieldLabel className="label-field">EMAIL</FieldLabel>
                         <input type="email" {...register("email")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                         {errors.email && (
                             <FieldError className="text-xs text-red-400">{errors.email.message}</FieldError>
                         )}
                     </Field>
                     <Field className="w-full">
-                        <FieldLabel className="text-zinc-400 text-xs tracking-widest">PHONE NUMBER</FieldLabel>
+                        <FieldLabel className="label-field">PHONE NUMBER</FieldLabel>
                         <input type="text" {...register("phoneNumber")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                         {errors.phoneNumber && (
                             <FieldError className="text-xs text-red-400">{errors.phoneNumber.message}</FieldError>

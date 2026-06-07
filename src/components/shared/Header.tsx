@@ -1,5 +1,5 @@
 import {Button} from "../ui/button.tsx";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import {useAuth} from "@/context/AuthProvider.tsx";
 import {ChevronDown} from "lucide-react";
 import {useState} from "react";
@@ -9,6 +9,13 @@ const Header = () => {
 
     const { user, logout } = useAuth();
     const [isOpen, setOpen] = useState(false);
+
+    const navigate = useNavigate()
+
+    const handleLogout = () => {
+        logout()
+        navigate("/login")
+    }
 
     return (
         <>
@@ -49,7 +56,7 @@ const Header = () => {
                                             <DropdownItem label="User Management" href="/admin/users" />
                                         </>
                                     )}
-                                    <li onClick={logout} className="text-center py-2 cursor-pointer">Logout</li>
+                                    <li onClick={handleLogout} className="text-center py-2 cursor-pointer">Logout</li>
                                 </ul>
                             )}
                         </div>

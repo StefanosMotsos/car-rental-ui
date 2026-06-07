@@ -78,14 +78,14 @@ const RentalForm = ({ vehicle }: RentalFormProps) => {
                         )}
                         <div className="flex gap-4">
                             <Field className="w-full">
-                                <FieldLabel className="text-zinc-400 text-xs tracking-widest">START DATE</FieldLabel>
+                                <FieldLabel className="label-field">START DATE</FieldLabel>
                                 <input type="date" {...register("startDate")} className={inputClass} />
                                 {errors.startDate && (
                                     <FieldError className="text-xs text-red-400">{errors.startDate.message}</FieldError>
                                 )}
                             </Field>
                             <Field className="w-full">
-                                <FieldLabel className="text-zinc-400 text-xs tracking-widest">END DATE</FieldLabel>
+                                <FieldLabel className="label-field">END DATE</FieldLabel>
                                 <input type="date" {...register("endDate")} className={inputClass} />
                                 {errors.endDate && (
                                     <FieldError className="text-xs text-red-400">{errors.endDate.message}</FieldError>
@@ -93,7 +93,7 @@ const RentalForm = ({ vehicle }: RentalFormProps) => {
                             </Field>
                         </div>
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">PICK-UP LOCATION</FieldLabel>
+                            <FieldLabel className="label-field">PICK-UP LOCATION</FieldLabel>
                             <select
                                 {...register("pickupLocationId", { valueAsNumber: true })}
                                 defaultValue=""
@@ -108,7 +108,7 @@ const RentalForm = ({ vehicle }: RentalFormProps) => {
                             )}
                         </Field>
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">DROP-OFF LOCATION</FieldLabel>
+                            <FieldLabel className="label-field">DROP-OFF LOCATION</FieldLabel>
                             <select
                                 {...register("dropoffLocationId", { valueAsNumber: true })}
                                 defaultValue=""

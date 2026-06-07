@@ -12,7 +12,7 @@ const FiltersRangeInput = ({ label, onRangeChange }: FiltersRangeInputProps) => 
 
     return (
         <div className="flex flex-col gap-2 mt-3">
-            <span className="text-zinc-400 text-xs tracking-widest">{label}</span>
+            <span className="label-field">{label}</span>
             <div className="flex items-center gap-2">
                 <input
                     type="number"

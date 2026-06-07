@@ -8,7 +8,7 @@ type FilterRadioListProps = {
 const FiltersRadioList = ({ label, options, onSelectionChange, addClasses }: FilterRadioListProps) => {
     return (
         <div className="flex flex-col gap-2 mt-3">
-            <span className="text-zinc-400 text-xs tracking-widest">{label}</span>
+            <span className="label-field">{label}</span>
             <ul className={`flex flex-col gap-2 max-h-36 overflow-y-auto ${addClasses ?? ""}`}>
                 {(options ?? []).map((option) => (
                     <li key={option} className="flex items-center gap-2 tracking-widest text-zinc-200 ml-3">

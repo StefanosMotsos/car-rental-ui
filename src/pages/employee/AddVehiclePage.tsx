@@ -67,14 +67,14 @@ const AddVehiclePage = () => {
                     )}
                     <div className="flex gap-4 items-center justify-center">
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">MAKE</FieldLabel>
+                            <FieldLabel className="label-field">MAKE</FieldLabel>
                             <input {...register("make")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                             {errors.make && (
                                 <FieldError className="text-xs text-red-400">{errors.make.message}</FieldError>
                             )}
                         </Field>
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">MODEL</FieldLabel>
+                            <FieldLabel className="label-field">MODEL</FieldLabel>
                             <input {...register("model")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                             {errors.model && (
                                 <FieldError className="text-xs text-red-400">{errors.model.message}</FieldError>
@@ -83,14 +83,14 @@ const AddVehiclePage = () => {
                     </div>
                     <div className="flex gap-4 items-center justify-center">
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">YEAR</FieldLabel>
+                            <FieldLabel className="label-field">YEAR</FieldLabel>
                             <input type="number" {...register("year")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                             {errors.year && (
                                 <FieldError className="text-xs text-red-400">{errors.year.message}</FieldError>
                             )}
                         </Field>
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">LICENSE PLATE</FieldLabel>
+                            <FieldLabel className="label-field">LICENSE PLATE</FieldLabel>
                             <input {...register("licensePlate")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                             {errors.licensePlate && (
                                 <FieldError className="text-xs text-red-400">{errors.licensePlate.message}</FieldError>
@@ -99,14 +99,14 @@ const AddVehiclePage = () => {
                     </div>
                     <div className="flex gap-4 items-center justify-center">
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">DAILY RATE (€)</FieldLabel>
+                            <FieldLabel className="label-field">DAILY RATE (€)</FieldLabel>
                             <input type="number" step="0.01" {...register("dailyRate")} className="bg-zinc-900 border border-zinc-600 rounded-md px-3 py-2 text-zinc-100 text-sm outline-none w-full" />
                             {errors.dailyRate && (
                                 <FieldError className="text-xs text-red-400">{errors.dailyRate.message}</FieldError>
                             )}
                         </Field>
                         <Field className="w-full">
-                            <FieldLabel className="text-zinc-400 text-xs tracking-widest">TIER TYPE</FieldLabel>
+                            <FieldLabel className="label-field">TIER TYPE</FieldLabel>
                             <select
                                 {...register("tierType")}
                                 defaultValue=""
@@ -123,7 +123,7 @@ const AddVehiclePage = () => {
                         </Field>
                     </div>
                     <Field className="w-full">
-                        <FieldLabel className="text-zinc-400 text-xs tracking-widest">CATEGORY</FieldLabel>
+                        <FieldLabel className="label-field">CATEGORY</FieldLabel>
                         <select
                             {...register("categoryId")}
                             defaultValue=""

@@ -1,5 +1,11 @@
 import axios from "axios";
-import type {CustomerReadOnlyDTO, EmployeeReadOnlyDTO} from "@/schemas/user.ts";
+import type {
+    CustomerFilters,
+    CustomerReadOnlyDTO, EmployeeFilters,
+    EmployeeReadOnlyDTO, PaginatedCustomer, PaginatedEmployee,
+    PaginatedUser,
+    UserFilters
+} from "@/schemas/user.ts";
 import type {CustomerUpdateDTO, EmployeeUpdateDTO} from "@/schemas/auth.ts";
 
 const API_URL = import.meta.env.VITE_API_URL
@@ -103,6 +109,72 @@ export async function deleteEmployee(uuid: string, token: string): Promise<void>
         })
     } catch (error) {
         let detail = "Failed to delete employee"
+        if (axios.isAxiosError(error)) {
+            const data = error.response?.data
+            if (typeof data?.detail === "string") detail = data.detail
+        }
+        throw new Error(detail, { cause: error })
+    }
+}
+
+export async function getUsers(
+    token: string,
+    filters?: UserFilters
+) : Promise<PaginatedUser> {
+
+    try {
+        const res = await axios.get(API_URL + "/users/", {
+            headers: {
+                "Authorization": `Bearer ${token}`},
+            params: filters
+        })
+        return res.data
+    } catch (error) {
+        let detail = "Failed to fetch Users"
+        if (axios.isAxiosError(error)) {
+            const data = error.response?.data
+            if (typeof data?.detail === "string") detail = data.detail
+        }
+        throw new Error(detail, { cause: error })
+    }
+}
+
+export async function getCustomers(
+    token: string,
+    filters?: CustomerFilters
+) : Promise<PaginatedCustomer> {
+
+    try {
+        const res = await axios.get(API_URL + "/customers/", {
+            headers: {
+                "Authorization": `Bearer ${token}`},
+            params: filters
+        })
+        return res.data
+    } catch (error) {
+        let detail = "Failed to fetch Customers"
+        if (axios.isAxiosError(error)) {
+            const data = error.response?.data
+            if (typeof data?.detail === "string") detail = data.detail
+        }
+        throw new Error(detail, { cause: error })
+    }
+}
+
+export async function getEmployees(
+    token: string,
+    filters?: EmployeeFilters
+) : Promise<PaginatedEmployee> {
+
+    try {
+        const res = await axios.get(API_URL + "/employees/", {
+            headers: {
+                "Authorization": `Bearer ${token}`},
+            params: filters
+        })
+        return res.data
+    } catch (error) {
+        let detail = "Failed to fetch Employees"
         if (axios.isAxiosError(error)) {
             const data = error.response?.data
             if (typeof data?.detail === "string") detail = data.detail

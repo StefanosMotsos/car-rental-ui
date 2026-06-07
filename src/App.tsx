@@ -14,6 +14,7 @@ import UpdateVehiclePage from "@/pages/admin/UpdateVehiclePage.tsx";
 import EmployeeVehicleListPage from "@/pages/employee/EmployeeVehicleListPage.tsx";
 import RentalListPage from "@/pages/employee/RentalListPage.tsx";
 import OwnRentalHistoryPage from "@/pages/customer/OwnRentalHistoryPage.tsx";
+import UserManagementPage from "@/pages/admin/UserManagementPage.tsx";
 
 function App() {
   return (
@@ -39,7 +40,7 @@ function App() {
 
               <Route path="/admin/vehicles/:uuid/edit" element={<ProtectedRoute roles={["ADMIN"]}><UpdateVehiclePage/></ProtectedRoute>} />
               <Route path="/admin/employees/:uuid/edit" element={<ProtectedRoute roles={["ADMIN"]}><UpdateEmployeePage/></ProtectedRoute>} />
-              {/*admin(1 page)*/}
+              <Route path="/admin/users" element={<ProtectedRoute roles={["ADMIN"]}><UserManagementPage/></ProtectedRoute>} />
           </Route>
       </Routes>
     </>

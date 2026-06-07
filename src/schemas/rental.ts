@@ -1,9 +1,20 @@
 import { z } from "zod"
 
+const today = new Date()
+today.setHours(0, 0, 0, 0)
+const maxDate = new Date()
+maxDate.setFullYear(maxDate.getFullYear() + 2)
+
 export const rentalCreateSchema = z.object({
     vehicleUuid: z.string().uuid(),
-    startDate: z.string().min(1, "Start date is required"),
-    endDate: z.string().min(1, "End date is required"),
+    startDate: z.string().min(1, "Start date is required").refine(val => {
+        const date = new Date(val)
+        return date >= today && date <= maxDate
+    }, { message: "Start date must be today or later, within 2 years" }),
+    endDate: z.string().min(1, "End date is required").refine(val => {
+        const date = new Date(val)
+        return date >= today && date <= maxDate
+    }, { message: "End date must be today or later, within 2 years" }),
     pickupLocationId: z.number({ error: "Pickup location is required" }),
     dropoffLocationId: z.number({ error: "Dropoff location is required" }),
 })

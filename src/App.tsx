@@ -13,6 +13,7 @@ import UpdateEmployeePage from "@/pages/admin/UpdateEmployeePage.tsx";
 import UpdateVehiclePage from "@/pages/admin/UpdateVehiclePage.tsx";
 import EmployeeVehicleListPage from "@/pages/employee/EmployeeVehicleListPage.tsx";
 import RentalListPage from "@/pages/employee/RentalListPage.tsx";
+import OwnRentalHistoryPage from "@/pages/customer/OwnRentalHistoryPage.tsx";
 
 function App() {
   return (
@@ -26,7 +27,7 @@ function App() {
 
 
               <Route path="/customer/vehicles" element={<ProtectedRoute roles={["CUSTOMER"]}><VehicleListPage/></ProtectedRoute>} />
-              {/*rental history*/}
+              <Route path="/customer/rentals" element={<ProtectedRoute roles={["CUSTOMER"]}><OwnRentalHistoryPage/></ProtectedRoute>} />
               <Route path="/customer/edit" element={<ProtectedRoute roles={["CUSTOMER"]}><UpdateProfilePage/></ProtectedRoute>}/>
 
 

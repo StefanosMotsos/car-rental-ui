@@ -1,5 +1,14 @@
 import type {CustomerReadOnlyDTO, EmployeeReadOnlyDTO, UserReadOnlyDTO} from "@/schemas/user.ts";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table.tsx";
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger
+} from "@/components/ui/dropdown-menu.tsx";
+import {Button} from "@/components/ui/button.tsx";
+import {Ellipsis} from "lucide-react";
+import {useNavigate} from "react-router-dom";
 
 type UserTableProps = {
     data: UserReadOnlyDTO[] | CustomerReadOnlyDTO[] | EmployeeReadOnlyDTO[];
@@ -7,6 +16,8 @@ type UserTableProps = {
 }
 
 const UserTable = ({ data, activeTab } : UserTableProps) => {
+    const navigate = useNavigate();
+
     return (
         <>
             <div className="border border-zinc-700 rounded-xl bg-zinc-900 overflow-hidden w-full">
@@ -48,6 +59,23 @@ const UserTable = ({ data, activeTab } : UserTableProps) => {
                                 <TableCell>{e.roleName}</TableCell>
                                 <TableCell>{e.firstname} {e.lastname}</TableCell>
                                 <TableCell>{e.phoneNumber}</TableCell>
+                                <TableCell className="pl-6">
+                                    <DropdownMenu>
+                                        <DropdownMenuTrigger asChild>
+                                            <Button variant="ghost" size="icon" className="size-8">
+                                                <Ellipsis />
+                                                <span className="sr-only">Open menu</span>
+                                            </Button>
+                                        </DropdownMenuTrigger>
+                                        <DropdownMenuContent align="end" className="bg-zinc-800 border-zinc-700 text-zinc-200">
+                                            <DropdownMenuItem
+                                                onClick={() => navigate(`/admin/employees/${e.uuid}/edit`)}
+                                                className="hover:bg-zinc-700 cursor-pointer">
+                                                Edit
+                                            </DropdownMenuItem>
+                                        </DropdownMenuContent>
+                                    </DropdownMenu>
+                                </TableCell>
                             </TableRow>
                         ))}
                         {activeTab === "users" && (data as UserReadOnlyDTO[]).map((u) => (

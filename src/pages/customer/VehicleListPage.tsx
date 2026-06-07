@@ -5,11 +5,18 @@ import ListPagination from "@/components/shared/ListPagination.tsx";
 import { useVehicles } from "@/hooks/useVehicles.ts";
 import VehicleListControls from "@/components/ui/VehicleListControls.tsx";
 import type {VehicleFilters} from "@/schemas/vehicle.ts";
+import {Spinner} from "@/components/ui/spinner.tsx";
 
 const VehicleListPage = () => {
-    const { vehicles, page, setPage, totalPages, setFilters } = useVehicles()
+    const { vehicles, isLoading, page, setPage, totalPages, setFilters } = useVehicles()
 
     const makers = vehicles.length > 0 ? [...new Set(vehicles.map(v => v.make))] : []
+
+    if (isLoading) return (
+        <div className="flex items-center text-center gap-4">
+            <Spinner className="size-8" />
+        </div>
+    )
 
     return (
         <main className="min-h-screen flex flex-col items-center justify-center pt-40 pb-30 px-12">

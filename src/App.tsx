@@ -12,6 +12,7 @@ import UpdateProfilePage from "@/pages/customer/UpdateProfilePage.tsx";
 import UpdateEmployeePage from "@/pages/admin/UpdateEmployeePage.tsx";
 import UpdateVehiclePage from "@/pages/admin/UpdateVehiclePage.tsx";
 import EmployeeVehicleListPage from "@/pages/employee/EmployeeVehicleListPage.tsx";
+import RentalListPage from "@/pages/employee/RentalListPage.tsx";
 
 function App() {
   return (
@@ -22,16 +23,22 @@ function App() {
               <Route path="/login" element={<LoginPage />} />
               <Route path="/register" element={<RegisterCustomerPage/>} />
               <Route path="/register/employee" element={<ProtectedRoute roles={["ADMIN"]}><RegisterEmployeePage/></ProtectedRoute>} />
+
+
               <Route path="/customer/vehicles" element={<ProtectedRoute roles={["CUSTOMER"]}><VehicleListPage/></ProtectedRoute>} />
               {/*rental history*/}
               <Route path="/customer/edit" element={<ProtectedRoute roles={["CUSTOMER"]}><UpdateProfilePage/></ProtectedRoute>}/>
-              {/*employee rental*/}
+
+
+              <Route path="/employee/rentals" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><RentalListPage/></ProtectedRoute>} />
               <Route path="/employee/vehicles" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><EmployeeVehicleListPage/></ProtectedRoute>} />
               <Route path="/employee/add/vehicle" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddVehiclePage/></ProtectedRoute>} />
               <Route path="/employee/add/vehicle/:uuid/photo" element={<ProtectedRoute roles={["ADMIN", "EMPLOYEE"]}><AddPhotoPage/></ProtectedRoute>} />
+
+
               <Route path="/admin/vehicles/:uuid/edit" element={<ProtectedRoute roles={["ADMIN"]}><UpdateVehiclePage/></ProtectedRoute>} />
               <Route path="/admin/employees/:uuid/edit" element={<ProtectedRoute roles={["ADMIN"]}><UpdateEmployeePage/></ProtectedRoute>} />
-              {/*admin(1 page, employee extra)*/}
+              {/*admin(1 page)*/}
           </Route>
       </Routes>
     </>

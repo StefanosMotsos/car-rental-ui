@@ -1,7 +1,7 @@
 import {useAuth} from "@/context/AuthProvider.tsx";
 import {useEffect, useState} from "react";
 import type {RentalFilters, RentalReadOnlyDTO} from "@/schemas/rental.ts";
-import {getRentals} from "@/api/rental.ts";
+import {getRentalHistory, getRentals} from "@/api/rental.ts";
 
 export const useRentals = () => {
     const { user } = useAuth()
@@ -18,7 +18,9 @@ export const useRentals = () => {
             setLoading(true)
             setError(null)
             try {
-                const result = await getRentals(user!.token, { ...filters, pageNumber: page })
+                const result = user?.role === "CUSTOMER"
+                    ? await getRentalHistory(user!.token, { ...filters, pageNumber: page })
+                    : await getRentals(user!.token, { ...filters, pageNumber: page })
                 setRentals(result.data)
                 setTotalPages(result.totalPages)
             } catch (e) {

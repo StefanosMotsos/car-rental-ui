@@ -54,6 +54,28 @@ export async function getRentals(
     }
 }
 
+export async function getRentalHistory(
+    token: string,
+    filters?: RentalFilters
+) : Promise<PaginatedRental> {
+
+    try {
+        const res = await axios.get(API_URL + "/rentals/rental-history", {
+            headers: {
+                "Authorization": `Bearer ${token}`},
+            params: filters
+        })
+        return res.data
+    } catch (error) {
+        let detail = "Failed to fetch Rentals"
+        if (axios.isAxiosError(error)) {
+            const data = error.response?.data
+            if (typeof data?.detail === "string") detail = data.detail
+        }
+        throw new Error(detail, { cause: error })
+    }
+}
+
 export async function updateRental (
     token: string,
     fields: RentalUpdateDTO,

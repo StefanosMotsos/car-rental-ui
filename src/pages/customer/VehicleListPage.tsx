@@ -3,6 +3,8 @@ import FiltersSidebar from "@/components/shared/FiltersSidebar.tsx";
 import VehicleCard from "@/components/ui/VehicleCard.tsx";
 import ListPagination from "@/components/shared/ListPagination.tsx";
 import { useVehicles } from "@/hooks/useVehicles.ts";
+import VehicleListControls from "@/components/ui/VehicleListControls.tsx";
+import type {VehicleFilters} from "@/schemas/vehicle.ts";
 
 const VehicleListPage = () => {
     const { vehicles, page, setPage, totalPages, setFilters } = useVehicles()
@@ -14,11 +16,12 @@ const VehicleListPage = () => {
             <SearchBar onSearch={(value) => setFilters(f => ({ ...f, search: value }))} />
             <hr className="border-zinc-600 w-full max-w-5xl mt-6" />
             <div className="flex w-full gap-8 mt-12 mr-16 overflow-hidden">
-                <FiltersSidebar
+                <FiltersSidebar<VehicleFilters>
                     onFiltersChange={(filters) => setFilters(filters)}
                     setPage={setPage}
-                    makers={makers}
-                />
+                >
+                    <VehicleListControls makers={makers} />
+                </FiltersSidebar>
                 <div className="flex-1 grid grid-cols-4 gap-2">
                     {vehicles.map(vehicle => (
                         <VehicleCard

@@ -44,6 +44,23 @@ const VehicleListControls = ({makers} : VehicleListControlsProps) => {
                 options={makers}
                 onSelectionChange={(selected) => updateFilter({ make: selected })}
                 addClasses="custom-scroll" />
+            {(user?.role === "EMPLOYEE" || user?.role === "ADMIN") && (
+                <div className="flex flex-col gap-2">
+                    <FiltersRadioList
+                        key={`status-${resetKey}`}
+                        label="STATUS"
+                        options={["Available", "Rented", "Maintenance"]}
+                        onSelectionChange={(selected) => updateFilter({ status: selected as VehicleFilters["status"] })}/>
+                    <div className="flex flex-col gap-2 mt-3">
+                        <span className="text-zinc-400 text-xs tracking-widest">LICENSE PLATE</span>
+                        <input
+                            key={`plate-${resetKey}`}
+                            type="text"
+                            onChange={(e) => updateFilter({ licensePlate: e.target.value })}
+                            className="w-full bg-zinc-800 border border-zinc-600 text-white text-sm rounded-md px-2 py-1" />
+                    </div>
+                </div>
+            )}
             <FiltersRangeInput
                 key={`rate-${resetKey}`}
                 label="DAILY RATE"

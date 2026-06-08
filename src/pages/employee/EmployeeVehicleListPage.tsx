@@ -18,24 +18,26 @@ const EmployeeVehicleListPage = () => {
 
     return (
         <>
-            <main className="min-h-screen flex flex-col items-center justify-center pt-40 pb-30 px-12">
+            <main className="min-h-screen flex flex-col items-center justify-center pt-40 pb-30 px-4 md:px-12">
                 <div className="relative w-full flex items-center justify-center">
                     <SearchBar onSearch={(value) => setFilters(f => ({ ...f, search: value }))} />
                     <Button
                         onClick={() => navigate("/employee/add/vehicle")}
-                        className="absolute right-0 bg-navy-light py-6 px-3 text-xl rounded-xl">
+                        className="mt-2 md:mt-0 md:absolute md:right-0 shrink-0 bg-navy-light py-6 px-3 text-xl rounded-xl">
                         Add Vehicle
                     </Button>
                 </div>
                 <hr className="border-zinc-600 w-full max-w-5xl mt-6" />
-                <div className="flex w-full gap-8 mt-12 mr-16 overflow-hidden">
-                    <FiltersSidebar<VehicleFilters>
-                        onFiltersChange={(filters) => setFilters(filters)}
-                        setPage={setPage}
-                    >
-                        <VehicleListControls makers={makers} />
-                    </FiltersSidebar>
-                    <div className="flex-1">
+                <div className="flex w-full gap-8 mt-12 overflow-hidden">
+                    <div className="hidden md:block">
+                        <FiltersSidebar<VehicleFilters>
+                            onFiltersChange={(filters) => setFilters(filters)}
+                            setPage={setPage}
+                        >
+                            <VehicleListControls makers={makers} />
+                        </FiltersSidebar>
+                    </div>
+                    <div className="flex-1 min-w-0">
                         {isLoading ? (
                             <div className="flex justify-center items-center h-64">
                                 <Spinner className="size-8" />

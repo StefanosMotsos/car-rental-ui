@@ -21,13 +21,15 @@ const OwnRentalHistoryPage = () => {
                 </div>
                 <hr className="border-zinc-600 w-full max-w-5xl mt-6" />
                 <div className="flex w-full gap-8 mt-12 mr-16 overflow-hidden">
-                    <FiltersSidebar<RentalFilters>
-                        onFiltersChange={(filters) => setFilters(filters)}
-                        setPage={setPage}
-                    >
-                        <RentalListControls/>
-                    </FiltersSidebar>
-                    <div className="flex-1">
+                    <div className="hidden md:block">
+                        <FiltersSidebar<RentalFilters>
+                            onFiltersChange={(filters) => setFilters(filters)}
+                            setPage={setPage}
+                        >
+                            <RentalListControls/>
+                        </FiltersSidebar>
+                    </div>
+                    <div className="flex-1 min-w-0">
                         {user!.role !== "CUSTOMER" && (
                             <p className="text-zinc-600 text-xs tracking-widest italic w-full mb-8">* List auto-filtered to Pending</p>
                         )}

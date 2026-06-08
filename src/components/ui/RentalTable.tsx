@@ -38,7 +38,7 @@ const RentalTable = ({ rentals, refetch } : RentalTableProps) => {
 
     return (
         <>
-            <div className="border border-zinc-700 rounded-xl bg-zinc-900 overflow-hidden w-full">
+            <div className="border border-zinc-700 rounded-xl bg-zinc-900 overflow-x-auto w-full">
                 <Table>
                     <TableHeader>
                         <TableRow className="border-zinc-700 bg-zinc-800 hover:bg-zinc-800">

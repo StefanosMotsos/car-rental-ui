@@ -16,8 +16,8 @@ const UserManagementPage = () => {
 
     return (
         <>
-            <main className="min-h-screen flex flex-col items-center justify-center pt-40 pb-30 px-12">
-                <div className="w-full flex items-center justify-center gap-4">
+            <main className="min-h-screen flex flex-col items-center justify-center pt-40 pb-30 md:px-12">
+                <div className="w-full flex flex-wrap items-center justify-center gap-4">
                     <Button
                         onClick={() => { setActiveTab("customers"); setPage(1) }}
                         className={activeTab === "customers" ? "bg-navy-light px-6 py-7 rounded-xl text-lg"
@@ -38,14 +38,16 @@ const UserManagementPage = () => {
                     </Button>
                 </div>
                 <hr className="border-zinc-600 w-full max-w-5xl mt-6" />
-                <div className="flex w-full gap-8 mt-12 mr-16 overflow-hidden">
-                    <FiltersSidebar<UserManagementFilters>
-                        onFiltersChange={(filters) => setFilters(filters)}
-                        setPage={setPage}
-                    >
-                        <UserListControls activeTab={activeTab} />
-                    </FiltersSidebar>
-                    <div className="flex-1">
+                <div className="flex w-full gap-8 mt-12 overflow-hidden">
+                    <div className="hidden md:block">
+                        <FiltersSidebar<UserManagementFilters>
+                            onFiltersChange={(filters) => setFilters(filters)}
+                            setPage={setPage}
+                        >
+                            <UserListControls activeTab={activeTab} />
+                        </FiltersSidebar>
+                    </div>
+                    <div className="flex-1 min-w-0">
                         {isLoading ? (
                             <div className="flex justify-center items-center h-64">
                                 <Spinner className="size-8" />

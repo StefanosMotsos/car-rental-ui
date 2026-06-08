@@ -17,13 +17,15 @@ const VehicleListPage = () => {
             <SearchBar onSearch={(value) => setFilters(f => ({ ...f, search: value }))} />
             <hr className="border-zinc-600 w-full max-w-5xl mt-6" />
             <div className="flex w-full gap-8 mt-12 mr-16 overflow-hidden">
-                <FiltersSidebar<VehicleFilters>
-                    onFiltersChange={(filters) => setFilters(filters)}
-                    setPage={setPage}
-                >
-                    <VehicleListControls makers={makers} />
-                </FiltersSidebar>
-                <div className="flex-1 grid grid-cols-4 gap-2">
+                <div className="hidden md:block">
+                    <FiltersSidebar<VehicleFilters>
+                        onFiltersChange={(filters) => setFilters(filters)}
+                        setPage={setPage}
+                    >
+                        <VehicleListControls makers={makers} />
+                    </FiltersSidebar>
+                </div>
+                <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2">
                     {isLoading ? (
                         <div className="flex items-center text-center gap-4">
                             <Spinner className="size-8" />

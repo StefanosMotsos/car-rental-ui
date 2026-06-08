@@ -33,7 +33,7 @@ const LandingPage = () => {
                 </div>
                 <p className="text-zinc-300 text-3xl md:text-5xl font-bold text-center py-5">...And many more!</p>
             </section>
-            <section className="flex items-center justify-center gap-8 py-40 w-full">
+            <section className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-8 py-20 md:py-40 px-6 w-full">
                 <StatCard title="No Hidden Fees" description="Know exactly what you're paying before you confirm" />
                 <StatCard title="Wide Selection" description="Economy to VIP, a car for every occasion" />
                 <StatCard title="Real Reviews" description="Rated by verified customers across Greece" />

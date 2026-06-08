@@ -25,13 +25,13 @@ const LandingPage = () => {
                 </Button>
             </section>
             <section>
-                <p className="text-zinc-300 text-5xl font-bold text-center pt-30 pb-5 border-t-3 border-zinc-700 w-full">We have cars from...</p>
-                <div className="flex items-center justify-center gap-5">
+                <p className="text-zinc-300 text-3xl md:text-5xl font-bold text-center pt-20 md:pt-30 pb-5 border-t-3 border-zinc-700 w-full">We have cars from...</p>
+                <div className="flex flex-wrap items-center justify-center gap-3 md:gap-8 px-6 md:px-16">
                     {brands.map((b) =>
                         <BrandIcon key={b.alt} src={b.src} alt={b.alt} />
                     )}
                 </div>
-                <p className="text-zinc-300 text-5xl font-bold text-center py-5">...And many more!</p>
+                <p className="text-zinc-300 text-3xl md:text-5xl font-bold text-center py-5">...And many more!</p>
             </section>
             <section className="flex items-center justify-center gap-8 py-40 w-full">
                 <StatCard title="No Hidden Fees" description="Know exactly what you're paying before you confirm" />
@@ -39,7 +39,7 @@ const LandingPage = () => {
                 <StatCard title="Real Reviews" description="Rated by verified customers across Greece" />
             </section>
             <section className="flex flex-col items-center justify-center gap-8 py-8 w-full">
-                <p className='text-zinc-300 text-5xl font-bold'>Already a customer?</p>
+                <p className='text-zinc-300 text-3xl md:text-5xl font-bold'>Already a customer?</p>
                 <Button size="lg" className="mb-16 px-6 py-8 text-lg font-bold">
                     <Link to={"/customer/rentals"}>View My Rentals</Link>
                 </Button>

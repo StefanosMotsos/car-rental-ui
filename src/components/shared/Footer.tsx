@@ -6,7 +6,7 @@ const Footer = () => {
     return (
         <>
             <footer className="header-gradient px-10 py-6 text-navy-dark">
-                <div className="flex items-start justify-center gap-40">
+                <div className="flex flex-col md:flex-row items-start justify-center gap-4 md:gap-40">
                     <div>
                         <h2 className="font-medium text-lg">Motsos Car Rentals</h2>
                         <p className="max-w-sm">Premium rentals across Greece. Economy to VIP, a car for every occasion.</p>

@@ -41,6 +41,7 @@ const LoginPage = () => {
                 className="min-h-screen flex items-center justify-center"
             >
                 <div className="flex flex-col border border-zinc-700 rounded-xl bg-zinc-800 px-8 py-12 mt-20 gap-5 w-full max-w-sm">
+                    <p className="text-zinc-600 text-xs text-center tracking-widest italic w-full mb-2">* First request may take up to 1 minute to wake the server</p>
                     <h1 className="text-zinc-300 text-2xl font-bold">Sign In</h1>
                     {apiError && (
                         <div

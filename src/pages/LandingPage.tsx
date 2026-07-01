@@ -40,9 +40,10 @@ const LandingPage = () => {
             </section>
             <section className="flex flex-col items-center justify-center gap-8 py-8 w-full">
                 <p className='text-zinc-300 text-3xl md:text-5xl font-bold'>Already a customer?</p>
-                <Button size="lg" className="mb-16 px-6 py-8 text-lg font-bold">
+                <Button size="lg" className="px-6 py-8 text-lg font-bold">
                     <Link to={"/customer/rentals"}>View My Rentals</Link>
                 </Button>
+                <p className="text-zinc-600 text-xs text-center tracking-widest italic w-full mb-16">* First request may take up to 1 minute to wake the server</p>
             </section>
             <section className="flex flex-col items-center justify-center gap-8 py-8 w-full">
                 <p className="text-zinc-300 text-3xl font-bold text-center">Who We Are</p>
